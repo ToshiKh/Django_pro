@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Notifications{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Your Notifications</h2>
+    <ul class="list-group">
+        {% for notification in notifications %}
+        <li class="list-group-item">
+            <strong>{{ notification.get_notification_type_display }}</strong> - {{ notification.message }}
+            <div>
+                <a href="{% url 'notifications:mark_as_read' notification.id %}" class="btn btn-sm btn-success">Mark as Read</a>
+                <a href="{% url 'notifications:delete_notification' notification.id %}" class="btn btn-sm btn-danger">Delete</a>
+                <a href="{% url 'notifications:notification_history' %}" class="btn btn-info">View Notification History</a>
+            </div>
+        </li>
+        {% empty %}
+        <li class="list-group-item">No new notifications</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

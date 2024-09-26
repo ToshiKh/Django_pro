@@ -1,0 +1,34 @@
+<!-- progress.html -->
+{% extends "base.html" %}
+
+{% block title %}Progress List{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Progress List</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Course Name</th>
+                <th>Progress (%)</th>
+                <th>Last Accessed</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if progress_list %}
+                {% for progress in progress_list %}
+                <tr>
+                    <td>{{ progress.student.username }}</td>
+                    <td>{{ progress.course.course_name }}</td>
+                    <td>{{ progress.progress_percentage }}%</td>
+                    <td>{{ progress.last_accessed|date:"Y-m-d H:i" }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td colspan="4">No progress data available.</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

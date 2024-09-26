@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Notification History{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Notification History</h2>
+    <ul class="list-group">
+        {% for notification in notifications %}
+        <li class="list-group-item {% if notification.is_read %}list-group-item-secondary{% endif %}">
+            <strong>{{ notification.get_notification_type_display }}</strong> - {{ notification.message }}
+            <small class="text-muted">Created at: {{ notification.created_at }}</small>
+        </li>
+        {% empty %}
+        <li class="list-group-item">No notifications found.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

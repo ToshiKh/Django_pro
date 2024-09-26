@@ -1,7 +1,7 @@
 from django import forms
-from .models import Student
+from .models import Profile
 
-class StudentForm(forms.ModelForm):
+class ProfileForm(forms.ModelForm):
     class Meta:
-        model = Student
+        model = Profile
         fields = ['name', 'student_number', 'email', 'grades', 'satisfaction', 'improvements']
